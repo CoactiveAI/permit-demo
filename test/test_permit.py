@@ -23,13 +23,13 @@ async def test_create_client() -> None:
             key=user_id,
             first_name="hi",
             last_name="",
-            attributes={"full_access": True},
+            attributes={"oauth_client": True, "full_access": True},
         )
     )
     # Manually update it after the sync to ensure this is not a viable workaround
     await permit.api.users.update(
         user_key=user_id,
-        user_data=UserUpdate(attributes={"full_access": True}),
+        user_data=UserUpdate(attributes={"oauth_client": True, "full_access": True}),
     )
     await permit.api.users.assign_role(
         assignment=RoleAssignmentCreate(
